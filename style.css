@@ -5,7 +5,7 @@
 /* Stile base */
 body {
     /* Manteniamo lo sfondo nero per l'esterno del contenitore */
-    background-color: #000; 
+    background-color: #FFFDD0; 
     color: #333; 
     font-family: 'Playfair Display', serif; /* Font predefinito */
     display: flex;
