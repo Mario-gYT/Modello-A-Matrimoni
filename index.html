@@ -3,79 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invito al nostro Matrimonio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900;1,700&family=Great+Vibes&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style-matrimonio-A.css"> 
+    <title>Matrimonio </title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="matrimonio-card">
-        
-        <div class="decorations top-decor">
-            <span class="symbol">🙏</span>
-            <span class="symbol">🍸</span>
-            <span class="symbol">✝️</span>
-        </div>
-        
-        <p class="small-text gold-text">Invito al nostro Matrimonio</p>
-        
-        <div class="names-container">
-            <h1 class="main-title cursive-name bride-name">NOME SPOSA</h1>
-            <span class="separator-ampersand black-text">&</span>
-            <h1 class="main-title cursive-name groom-name">NOME SPOSO</h1>
-        </div>
-        
-        <div class="separator thin"></div>
+    <input type="checkbox" id="toggle">
 
-        <p class="details gold-text date-time">28 Giugno 2026 | Ore 11:00</p>
-        
-        <p class="small-text black-text" style="margin-top: 10px;">Manca solo:</p>
-        <div id="countdown" class="gold-text">
-            Loading...
+    <div id="envelope-container">
+
+        <div id="closed-state">
+            <h1 class="black-text">Invito al nostro Matrimonio</h1>
+            <label for="toggle" class="gold-button">Apri l'Invito</label>
         </div>
         
-        <div class="separator"></div>
-
-        <div class="buttons-block-container">
+        <div id="open-state" class="boy"> <p class="small-text gold-text">Sei invitato al nostro Matrimonio</p>
             
-            <p class="small-text black-text location-header">La cerimonia e il ricevimento:</p>
-            
-            <div class="location-duo">
-                
-                <div class="location-group-block">
-                    <a href="http://googleusercontent.com/maps.google.com/chiesa" target="_blank" class="action-button block-button primary-button" title="Posizione Chiesa">
-                        <span class="button-icon">⛪</span> Chiesa
-                    </a>
-                </div>
-                
-                <div class="location-group-block">
-                    <a href="http://googleusercontent.com/maps.google.com/ristorante" target="_blank" class="action-button block-button primary-button" title="Posizione Ristorante">
-                        <span class="button-icon">🍽️</span> Ricevimento
-                    </a>
-                </div>
-                
+            <div class="decorations">
+                <span class="teddy-bear">✝️</span>
+                <span class="balloons">⛪</span>
+                <span class="balloons">🥂</span>
             </div>
-            <div class="centered-action" style="margin-top: 25px;">
-                <a href="https://wa.me/39NUMERODELLASPOSA?text=Confermo%20la%20mia%20presenza%20al%20Matrimonio%20di%20[Nomi]" target="_blank" class="action-button block-button confirm-button" title="Conferma Presenza">
-                    <span class="button-icon">✅</span> Conferma Presenza
+            
+            <h1 class="main-title cursive-name black-text">Nome sposa e Sposo</h1>
+            
+            <p class="details black-text date-time">Il giorno: 28 / 06 / 2026 alle ore 11:00</p>
+            
+            <div class="separator"></div>
+
+            <p class="details black-text">Cerimonia </p>
+            <div class="buttons-container">
+                
+                <a href="https://www.google.com/maps/dir//Via+Romani,+80,+80048+Sant'Anastasia+NA/@40.8745048,14.3044967,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x133baf33951368fd:0x2dd9632f87550327!2m2!1d14.3868975!2d40.8745341?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="action-button">
+                    Posizione della Chiesa
                 </a>
             </div>
+
+            <p class="details black-text" style="margin-top: 30px;">A seguire ricevimento, presso il ristorante:</p>
+            <div class="buttons-container">
+                
+                <a href="http://googleusercontent.com/maps.google.com/2" target="_blank" class="action-button">
+                    Posizione del Ristorante
+                </a>
+            </div>
+
+            <div class="buttons-container" style="margin-top: 40px;">
+                <a href="https://wa.me/39numero dei genitori?text=Confermo%20la%20mia%20presenza%20al%20Battesimo%20di%20[Nome]" target="_blank" class="action-button whatsapp">
+                    Conferma Presenza
+                </a>
+            </div>
+
+            <p class="details black-text" style="margin-top: 40px;">Invito creato da:</p>
+            <div class="buttons-container social-buttons">
+                <a href="https://www.instagram.com/_mariogyt_/" target="_blank" class="action-button">
+                    Mario G.: Instagram
+                </a> 
+                <a href="https://www.youtube.com/@MariogYT." target="_blank" class="action-button">
+                    Mario G.: Youtube
+                </a>
+            </div>
+            
         </div>
-        
-        <div class="separator" style="margin-top: 30px;"></div>
-        <p class="details black-text" style="margin-top: 15px;">Seguimi sui social:</p>
-        <div class="buttons-container social-buttons">
-            <a href="https://www.instagram.com/_mariogyt_/" target="_blank" class="action-button social-button">
-                Mario G.: Instagram
-            </a> 
-            <a href="https://www.youtube.com/@MariogYT." target="_blank" class="action-button social-button">
-                Mario G.: YouTube
-            </a>
-        </div>
-        
+
     </div>
-    
-    <script src="countdown-matrimonio.js"></script>
 
 </body>
 </html>
