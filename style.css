@@ -1,261 +1,265 @@
-/* Importazione Font Google */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900;1,700&family=Great+Vibes&display=swap');
+/* Importazione Font Google per Playfair Display e Great Vibes (Corsivo) */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Great+Vibes&display=swap');
 
-/* Variabili Colori (Matrimonio) */
-:root {
-    --gold: #A68E5D; /* Oro elegante */
-    --black-text: #222222; 
-    --paper-white: #FFFFFF; /* Sfondo BIANCO PURO come richiesto */
-    
-    /* Colori Nomi */
-    --boy-color: #79A6D2; /* Azzurro Sposo */
-    --girl-color: #F8BBD0; /* Rosa Sposa */
-    
-    --confirm-color: #9b59b6; /* Colore Accento per la conferma */
-    --social-color: #6c757d; 
-}
 
 /* Stile base */
 body {
-    /* Sfondo nero, la card è bianca */
+    /* Manteniamo lo sfondo nero per l'esterno del contenitore */
     background-color: #000; 
     color: #333; 
-    font-family: 'Playfair Display', serif; 
+    font-family: 'Playfair Display', serif; /* Font predefinito */
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     min-height: 100vh;
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
-    overflow-x: hidden; 
 }
 
-.gold-text { color: var(--gold); }
-.black-text { color: var(--black-text); }
+/* Variabili Colori */
+:root {
+    --gold: #A68E5D; /* Oro elegante */
+    --black-text: #222222; 
+    --paper-white: #FDFDFD; /* Bianco crema per lo sfondo dell'invito */
+    
+    /* Colori Sesso */
+    --boy-color: #79A6D2; /* Azzurro tenue */
+    --girl-color: #F8BBD0; /* Rosa tenue */
+}
 
+.gold-text {
+    color: var(--gold);
+}
+.black-text {
+    color: var(--black-text);
+}
 
-/* Rimuoviamo il CSS della busta */
-#toggle { display: none; }
-
-
-/* ------------------------------------- */
-/* CONTENITORE PRINCIPALE (La Card) */
-/* ------------------------------------- */
-
-#matrimonio-card {
+/* Contenitore Busta/Invito (Modello Purity) */
+#envelope-container {
     width: 90%;
-    max-width: 550px; 
+    max-width: 500px;
+    min-height: 400px;
     background-color: var(--paper-white); 
-    border: 3px solid var(--gold); 
+    border: 1px solid var(--gold); 
     border-radius: 5px; 
     padding: 40px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    transition: all 0.7s ease-in-out;
+}
+
+/* Nasconde il checkbox */
+#toggle {
+    display: none;
 }
 
 /* ------------------------------------- */
-/* NOMI, COLORI E CORNICE */
+/* STATO CHIUSO (Busta Iniziale) */
 /* ------------------------------------- */
-.names-container {
+#closed-state {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: baseline;
-    margin: 10px 0 20px 0;
+    align-items: center;
+    min-height: 350px;
+}
+
+#closed-state h1 {
+    color: var(--black-text);
+    font-weight: 500;
+}
+
+/* Stile del pulsante "Apri invito" */
+.gold-button {
+    background-color: var(--gold);
+    color: var(--paper-white);
+    border: 1px solid var(--gold);
+    padding: 12px 30px;
+    border-radius: 5px; 
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    display: inline-block;
+}
+
+.gold-button:hover {
+    background-color: var(--black-text);
+    color: var(--gold);
+    transform: none; 
+}
+
+/* ------------------------------------- */
+/* STATO APERTO (Contenuto dell'Invito) */
+/* ------------------------------------- */
+#open-state {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s 0.2s, transform 0.6s 0.2s;
+}
+
+.small-text {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Playfair Display', serif;
 }
 
 .main-title {
+    color: var(--black-text);
+    font-size: 4em; 
+    margin: 10px 0;
+    line-height: 1.1;
+    font-family: 'Playfair Display', serif; 
+    font-weight: 700;
+}
+
+.cursive-name {
     font-family: 'Great Vibes', cursive;
-    font-size: 4.5em; 
+    font-size: 5em;
     font-weight: 400;
+    color: var(--black-text);
     margin: 0;
     line-height: 1.2;
 }
 
-.bride-name {
-    color: var(--girl-color); /* Rosa Sposa */
+.date-time {
+    font-size: 1.1em;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
 }
 
-.groom-name {
-    color: var(--boy-color); /* Azzurro Sposo */
+.details {
+    margin-top: 20px;
+    margin-bottom: 10px; /* Aggiunto piccolo margine sotto i dettagli */
 }
 
-.separator-ampersand {
-    font-size: 3em;
-    margin: 0 10px;
+.separator {
+    width: 60%;
+    height: 1px;
+    background-color: var(--gold);
+    margin: 30px auto;
+}
+
+/* LOGICA DI APERTURA CSS (Mantenuta Invariata) */
+#toggle:checked ~ #envelope-container #closed-state {
+    display: none; 
+    opacity: 0;
+}
+
+#toggle:checked ~ #envelope-container #open-state {
+    display: block; 
+    opacity: 1; 
+    transform: translateY(0);
 }
 
 /* ------------------------------------- */
-/* DECORAZIONI E TESTO */
+/* STILE PULSANTI DI AZIONE - TONDI */
 /* ------------------------------------- */
-.decorations { 
-    font-size: 2.5em; 
-    margin-bottom: 20px; 
-    display: flex; 
-    justify-content: center; 
-    gap: 15px; 
-    flex-wrap: wrap; 
-}
-
-.symbol { color: var(--gold); }
-
-.small-text { 
-    font-size: 0.9em; 
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-    margin-bottom: 5px; 
-}
-
-.date-time { 
-    font-size: 1.1em; 
-    margin-top: 15px; 
-    margin-bottom: 5px; 
-    letter-spacing: 1px; 
-    color: var(--gold); 
-}
-
-.separator { 
-    width: 60%; 
-    height: 1px; 
-    background-color: var(--gold); 
-    margin: 20px auto; 
-}
-.centered-action { text-align: center; }
-
-/* ------------------------------------- */
-/* COUNTDOWN STYLE (Se usato) */
-/* ------------------------------------- */
-#countdown {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5em;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-#countdown span {
-    display: block;
-    font-size: 0.6em;
-    font-weight: 400;
-    margin-top: -5px;
-    text-transform: uppercase;
-}
-
-
-/* ------------------------------------- */
-/* PULSANTI A BLOCCO (RETTANGOLARI) */
-/* ------------------------------------- */
-.buttons-block-container {
-    margin-top: 30px;
+.buttons-container {
     display: flex;
     flex-direction: column;
-    gap: 10px; 
-}
-
-/* Regole per affiancare Chiesa/Ristorante */
-.location-duo {
-    display: flex;
-    justify-content: space-between; 
     gap: 15px; 
-    width: 100%;
-    margin-bottom: 5px; 
+    margin-top: 15px; /* Rimosso grande margine, gestito dai testi 'details' */
 }
 
-.location-group-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50%; 
-    box-sizing: border-box;
+/* Allinea i pulsanti social uno accanto all'altro */
+.buttons-container.social-buttons {
+    flex-direction: row; /* Modifica da colonna a riga */
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.location-header {
-    margin: 15px 0 5px 0; 
-    font-weight: 600;
-    color: var(--black-text); 
-    text-transform: uppercase;
+/* Riduce il padding per i pulsanti social più piccoli */
+.social-buttons .action-button {
+    padding: 10px 15px;
     font-size: 0.9em;
 }
 
-.action-button, .action-button.block-button {
+
+.action-button {
     text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 20px;
-    border-radius: 8px; /* RETTANGOLARE! */
-    font-weight: 600;
+    color: var(--gold);
+    background-color: transparent; 
+    padding: 12px 25px; 
+    border-radius: 50px; 
+    font-weight: normal;
+    text-transform: none; 
     transition: all 0.3s;
-    width: 100%; /* Larghezza piena nel suo contenitore */
-    box-sizing: border-box;
+    border: 2px solid var(--gold); 
     font-family: 'Playfair Display', serif;
+    display: inline-block;
 }
 
-/* Stile Mappa/Posizione */
-.primary-button {
-    border: 2px solid var(--gold);
-    background-color: transparent;
-    color: var(--gold);
+.action-button.whatsapp {
+    color: var(--paper-white); 
+    background-color: var(--gold);
+    border: 2px solid var(--gold); 
 }
-.primary-button:hover {
+
+.action-button:hover {
     background-color: var(--gold);
     color: var(--paper-white);
-    transform: translateY(-2px);
+    transform: translateY(-1px); 
 }
 
-/* Stile Conferma */
-.confirm-button {
-    border: 2px solid var(--confirm-color);
-    background-color: var(--confirm-color);
-    color: var(--paper-white);
-    padding: 15px 20px; 
-    font-size: 1.1em;
-}
-.confirm-button:hover {
-    background-color: transparent;
-    color: var(--confirm-color);
-    border-color: var(--confirm-color);
-    transform: translateY(-2px);
-}
-
-.button-icon {
-    margin-right: 8px;
-    font-size: 1.2em;
+.action-button.whatsapp:hover {
+    background-color: var(--black-text);
+    color: var(--gold);
+    border-color: var(--black-text); 
 }
 
 /* ------------------------------------- */
-/* PULSANTI SOCIAL */
+/* DECORAZIONI PER SESSO (Modello A Battesimo) */
 /* ------------------------------------- */
-.buttons-container.social-buttons { 
-    display: flex; 
-    flex-direction: row; 
-    justify-content: center; 
-    flex-wrap: wrap; 
-    margin-top: 10px; 
-    gap: 10px; 
-}
-.social-buttons .action-button {
-    padding: 8px 12px;
-    font-size: 0.8em;
-    border-radius: 5px; 
-    border: 1px solid var(--social-color); 
-    color: var(--social-color);
-    background-color: transparent;
-    width: auto; 
-}
-.social-buttons .action-button:hover {
-    background-color: var(--social-color);
-    color: var(--paper-white);
+
+.decorations {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
+/* Nasconde gli elementi decorativi di default */
+.teddy-bear, .balloons {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
 
-/* Media Query */
+/* Stile per RAGAZZO */
+#open-state.boy .balloons {
+    opacity: 1;
+    color: var(--boy-color);
+}
+#open-state.boy .teddy-bear {
+    opacity: 1;
+    color: var(--boy-color);
+}
+/* Stile per RAGAZZA */
+#open-state.girl .balloons {
+    opacity: 1;
+    color: var(--girl-color);
+}
+#open-state.girl .teddy-bear {
+    opacity: 1;
+    color: var(--girl-color);
+}
+
+/* Ottimizzazione per mobile */
 @media (max-width: 600px) {
-    #matrimonio-card { padding: 30px 15px; }
-    
-    .names-container { flex-direction: column; }
-    .main-title { font-size: 3.5em; }
-    .separator-ampersand { font-size: 2em; margin: 5px 0; }
-
-    .location-duo { gap: 10px; }
-    .action-button.block-button { padding: 10px 15px; font-size: 0.9em; }
-    .confirm-button { padding: 13px 18px; font-size: 1em; }
+    #envelope-container {
+        padding: 20px;
+    }
+    .main-title {
+        font-size: 3em;
+    }
+    .cursive-name {
+        font-size: 4em;
+    }
 }
